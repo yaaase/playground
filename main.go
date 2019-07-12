@@ -13,6 +13,17 @@ func ReduceInts(f func(int, int) int, arr []int) int {
 	return result
 }
 
+// FilterInts ...
+func FilterInts(f func(int) bool, arr []int) []int {
+	results := make([]int, 0)
+	for _, i := range arr {
+		if f(i) {
+			results = append(results, i)
+		}
+	}
+	return results
+}
+
 func main() {
 	fmt.Println("I am main")
 }

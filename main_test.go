@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestReduceInts(t *testing.T) {
 	type args struct {
@@ -29,6 +32,33 @@ func TestReduceInts(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := ReduceInts(tt.args.f, tt.args.arr); got != tt.want {
 				t.Errorf("ReduceInts() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestFilterInts(t *testing.T) {
+	type args struct {
+		f   func(int) bool
+		arr []int
+	}
+	even := func(x int) bool {
+		if x%2 == 0 {
+			return true
+		}
+		return false
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		{"filter even [1,2,3,4] is [2,4]", args{even, []int{1, 2, 3, 4}}, []int{2, 4}},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := FilterInts(tt.args.f, tt.args.arr); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("FilterInts() = %v, want %v", got, tt.want)
 			}
 		})
 	}
