@@ -30,7 +30,7 @@ func TestReduceInts(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ReduceInts(tt.args.f, tt.args.arr); got != tt.want {
+			if got := reduceInt(tt.args.f, tt.args.arr); got != tt.want {
 				t.Errorf("ReduceInts() = %v, want %v", got, tt.want)
 			}
 		})
@@ -48,16 +48,20 @@ func TestFilterInts(t *testing.T) {
 		}
 		return false
 	}
+	odd := func(x int) bool {
+		return !even(x)
+	}
 	tests := []struct {
 		name string
 		args args
 		want []int
 	}{
 		{"filter even [1,2,3,4] is [2,4]", args{even, []int{1, 2, 3, 4}}, []int{2, 4}},
+		{"filter odd [1,2,3,4] is [3,4]", args{odd, []int{1, 2, 3, 4}}, []int{1, 3}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := FilterInts(tt.args.f, tt.args.arr); !reflect.DeepEqual(got, tt.want) {
+			if got := filterInt(tt.args.f, tt.args.arr); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("FilterInts() = %v, want %v", got, tt.want)
 			}
 		})

@@ -2,8 +2,7 @@ package main
 
 import "fmt"
 
-// ReduceInts ...
-func ReduceInts(f func(int, int) int, arr []int) int {
+func reduceInt(f func(int, int) int, arr []int) int {
 	var next, result int
 	result = arr[0]
 	for i := 1; i < len(arr); i++ {
@@ -13,8 +12,7 @@ func ReduceInts(f func(int, int) int, arr []int) int {
 	return result
 }
 
-// FilterInts ...
-func FilterInts(f func(int) bool, arr []int) []int {
+func filterInt(f func(int) bool, arr []int) []int {
 	results := make([]int, 0)
 	for _, i := range arr {
 		if f(i) {
