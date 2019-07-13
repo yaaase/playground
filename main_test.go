@@ -24,6 +24,8 @@ func TestReduceInts(t *testing.T) {
 		args args
 		want int
 	}{
+		{"reduce add [] is 0", args{add, []int{}}, 0},
+		{"reduce add [1] is 6", args{add, []int{1}}, 1},
 		{"reduce add [1,2,3] is 6", args{add, []int{1, 2, 3}}, 6},
 		{"reduce multiply [2,3,4] is 24", args{multiply, []int{2, 3, 4}}, 24},
 		{"reduce max [4,1,9,4,11,4,11,3 is 11", args{max, []int{4, 1, 9, 4, 11, 4, 11, 3}}, 11},
