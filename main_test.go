@@ -58,6 +58,7 @@ func TestFilterInts(t *testing.T) {
 		args args
 		want []int
 	}{
+		{"filter anything [] is []", args{func(x int) bool { return true }, []int{}}, []int{}},
 		{"filter even [1,2,3,4] is [2,4]", args{even, []int{1, 2, 3, 4}}, []int{2, 4}},
 		{"filter odd [1,2,3,4] is [3,4]", args{odd, []int{1, 2, 3, 4}}, []int{1, 3}},
 	}
