@@ -2,10 +2,10 @@ package main
 
 import "fmt"
 
-type reduceFunc func(int, int) int
-type filterFunc func(int) bool
+type reducer func(int, int) int
+type filterer func(int) bool
 
-func reduceInt(f reduceFunc, arr []int) int {
+func reduceInt(f reducer, arr []int) int {
 	var next, result int
 	result = arr[0]
 	for i := 1; i < len(arr); i++ {
@@ -15,7 +15,7 @@ func reduceInt(f reduceFunc, arr []int) int {
 	return result
 }
 
-func filterInt(f filterFunc, arr []int) []int {
+func filterInt(f filterer, arr []int) []int {
 	results := make([]int, 0)
 	for _, i := range arr {
 		if f(i) {
